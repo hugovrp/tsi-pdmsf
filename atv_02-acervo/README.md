@@ -25,7 +25,7 @@ Clone o repositório, entre no diretório da atividade e instale as dependência
 
 ```bash
 git clone https://github.com/hugovrp/tsi-pdmsf.git
-cd tsi-pdmsf/a2-typescript
+cd tsi-pdmsf/atv_02-acervo
 npm install
 ```
 
