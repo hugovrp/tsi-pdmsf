@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<!-- typescript, tailwind, concurrently -->
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./dist/output.css">
+    <title>Acervo</title>
+  </head>
+  
+  <body class="container mx-auto pt-8 bg-stone-100">
+    <h1 class="text-[32px] font-bold text-green-600 text-center">
+      Acervo
+    </h1>
+
+    <main class="flex flex-row flex-wrap gap-12 justify-evenly pt-6">
+      <!-- Cadastro -->
+      <section class="min-w-[300px]">
+        <h2 class="text-[24px] text-green-700 font-bold tracking-wider pb-4">Cadastro</h2>
+
+        <div class="flex flex-col">
+          <label for="nome" class="text-[18px] text-green-900 font-[600] tracking-wide">
+            Nome:
+            <span class="text-red-500 font-bold">*</span>
+          </label>
+          <input type="text" id="nome" name="nome" placeholder="Ex: Código Limpo" class="mt-1 p-2 border border-green-600 rounded-lg mb-4 text-gray-900/90 focus:ring-green-600/20 focus:ring-3 focus:outline-none">
+          
+          <label for="autor" class="text-[18px] text-green-900 font-[600] tracking-wide">
+            Autor:
+            <span class="text-red-500 font-bold">*</span>
+          </label>
+          <input type="text" id="autor" name="autor" placeholder="Ex: Robert C. Martin" class="mt-1 p-2 border border-green-600 rounded-lg mb-4 text-gray-900/90 focus:ring-green-600/20 focus:ring-3 focus:outline-none">
+
+          <label for="ano" class="text-[18px] text-green-900 font-[600] tracking-wide">
+            Ano de publicação:
+            <span class="text-red-500 font-bold">*</span>
+          </label>
+          <input type="text" id="ano" name="ano" placeholder="Ex: 2011" class="mt-1 p-2 border border-green-600 rounded-lg mb-4 text-gray-900/90 focus:ring-green-600/20 focus:ring-3 focus:outline-none">
+        
+          <label for="categoria" class="text-[18px] text-green-900 font-[600] tracking-wide">
+            Categoria:
+            <span class="text-red-500 font-bold">*</span>
+          </label>
+          <select name="categoria" id="categoria" class="mt-1 p-2 border border-green-600 rounded-lg mb-4 text-gray-900/90 focus:ring-green-600/20 focus:ring-3 focus:outline-none">
+            <option value="" disabled selected hidden>Selecione...</option>
+            <option value="Tecnologia">Tecnologia</option>
+            <option value="Finanças">Finanças</option>
+            <option value="Literatura">Literatura</option>
+            <option value="Outros">Outros</option>
+          </select>
+          
+          <label for="editora" class="text-[18px] text-green-900 font-[600] tracking-wide">
+            Editora:
+          </label>
+          <input type="text" id="editora" name="editora" placeholder="Ex: Alta Books" class="mt-1 p-2 border border-green-600 rounded-lg mb-6 text-gray-900/90 focus:ring-green-600/20 focus:ring-3 focus:outline-none">
+            
+          <button id="btn-cadastro" class="text-[18px] text-stone-100 font-bold border border-green-600 bg-green-600 mt-1 p-2 rounded-lg cursor-pointer hover:text-green-600 hover:bg-stone-100 hover:-translate-y-[2px] transition-all duration-300">
+            Cadastrar Livro
+          </button>
+        </div>
+      </section>
+
+      <!-- Listagem -->
+      <section class="min-w-[300px]">
+        <h2 class="text-[24px] text-green-700 font-bold tracking-wider pb-4">Livros Cadastrados</h2>
+        <div id="list-cont" class="grid grid-cols-1 gap-4">
+          <p class="text-[18px] font-bold">Nenhum livro cadastrado até o momento!</p>
+        </div>
+      </section>
+    </main>
+    
+    <script type="module" src="./dist/main.js"></script>
+  </body>
+</html>
