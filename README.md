@@ -5,7 +5,7 @@ Repositório com as atividades avaliativas individuais desenvolvidas ao longo da
 ## 📂 Atividades
 
 | # | Atividade | Descrição | Link |
-|---|---|---|---|---|
+|---|---|---|---|
 | 01 | Aula Flexbox | Revisão de Flexbox, JavaScript e consumo de API (ViaCEP) | [Acessar](./atv_01-flexbox) |
 | 02 | Acervo | Cadastro de livros com TypeScript e Tailwind CSS | [Acessar](./atv_02-acervo) |
 
