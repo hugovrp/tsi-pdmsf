@@ -1,1 +1,112 @@
 @import "tailwindcss";
+
+:root {
+  --bg-base: #e9edf2;
+  --neu-dark: #c2c9d4;
+  --neu-light: #ffffff;
+  --neu-dark-subtle: rgba(184, 194, 207, 0.6);
+  --neu-light-subtle: rgba(255, 255, 255, 0.95);
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --accent-primary: #4f46e5;
+  --accent-primary-hover: #4338ca;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Neumorphic Extruded Elements (Dual Shadows: Light top-left, Dark bottom-right) */
+.neu-card {
+  background-color: var(--bg-base);
+  box-shadow: 8px 8px 20px var(--neu-dark), -8px -8px 20px var(--neu-light);
+}
+
+.neu-flat {
+  background-color: var(--bg-base);
+  box-shadow: 5px 5px 14px var(--neu-dark), -5px -5px 14px var(--neu-light);
+}
+
+.neu-flat-sm {
+  background-color: var(--bg-base);
+  box-shadow: 3px 3px 9px var(--neu-dark), -3px -3px 9px var(--neu-light);
+}
+
+/* Neumorphic Inset / Sunken Elements (Inner Shadows) */
+.neu-pressed {
+  background-color: var(--bg-base);
+  box-shadow: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
+}
+
+.neu-pressed-deep {
+  background-color: var(--bg-base);
+  box-shadow: inset 4px 4px 8px var(--neu-dark), inset -4px -4px 8px var(--neu-light);
+}
+
+/* Interactive Neumorphic Buttons */
+.neu-button {
+  background-color: var(--bg-base);
+  box-shadow: 4px 4px 10px var(--neu-dark), -4px -4px 10px var(--neu-light);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neu-button:hover:not(:disabled) {
+  box-shadow: 6px 6px 14px var(--neu-dark), -6px -6px 14px var(--neu-light);
+  transform: translateY(-1px);
+}
+
+.neu-button:active:not(:disabled) {
+  box-shadow: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
+  transform: translateY(0);
+}
+
+/* Neumorphic Input Field */
+.neu-input {
+  background-color: var(--bg-base);
+  box-shadow: inset 3px 3px 6px var(--neu-dark), inset -3px -3px 6px var(--neu-light);
+  transition: all 0.2s ease;
+}
+
+.neu-input:focus {
+  box-shadow: inset 4px 4px 8px #b4becb, inset -4px -4px 8px var(--neu-light), 0 0 0 2px rgba(79, 70, 229, 0.25);
+}
+
+/* Primary Action Neumorphic Button */
+.neu-button-primary {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  color: #ffffff;
+  box-shadow: 4px 4px 12px rgba(79, 70, 229, 0.35), 3px 3px 8px var(--neu-dark), -3px -3px 8px var(--neu-light);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neu-button-primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4338ca 0%, #3730a3 100%);
+  box-shadow: 5px 5px 16px rgba(79, 70, 229, 0.45), 4px 4px 10px var(--neu-dark), -4px -4px 10px var(--neu-light);
+  transform: translateY(-1px);
+}
+
+.neu-button-primary:active:not(:disabled) {
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.4);
+  transform: translateY(0);
+}
+
+/* Pill / Badge */
+.neu-pill {
+  background-color: var(--bg-base);
+  box-shadow: 2px 2px 5px var(--neu-dark), -2px -2px 5px var(--neu-light);
+}
+
+.neu-pill-inset {
+  background-color: var(--bg-base);
+  box-shadow: inset 2px 2px 4px var(--neu-dark), inset -2px -2px 4px var(--neu-light);
+}
