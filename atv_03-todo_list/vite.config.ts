@@ -7,4 +7,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  base: "/tsi-pdmsf/atv_03-todo_list/",
 })

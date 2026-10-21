@@ -10,66 +10,161 @@
     <title>Acervo</title>
   </head>
   
-  <body class="container mx-auto pt-8 bg-stone-100">
-    <h1 class="text-[32px] font-bold text-green-600 text-center">
-      Acervo
-    </h1>
+  <body class="bg-[#f8f9fa] text-[#212529] font-sans antialiased min-h-screen flex flex-col items-center py-10 px-4 md:px-8 selection:bg-blue-600 selection:text-white">
+    
+    <!-- Notificações Acessíveis (Toasts) -->
+    <div id="feedback-toast" aria-live="polite" aria-atomic="true" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 opacity-0 pointer-events-none shadow-lg rounded-full px-6 py-3 font-medium text-center"></div>
 
-    <main class="flex flex-row flex-wrap gap-12 justify-evenly pt-6">
-      <!-- Cadastro -->
-      <section class="min-w-[300px]">
-        <h2 class="text-[24px] text-green-700 font-bold tracking-wider pb-4">Cadastro</h2>
+    <div class="w-full max-w-7xl flex flex-col gap-10">
+      
+      <!-- Cabeçalho Principal -->
+      <header class="text-center md:text-left border-b border-gray-200 pb-6">
+        <div class="flex items-center justify-center md:justify-start gap-4 mb-2">
+          <div class="w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center shadow-md">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
+            Sistema de Gerenciamento de Livros
+          </h1>
+        </div>
+        <p class="text-gray-600 text-lg md:text-xl max-w-2xl">
+          Cadastre, organize e encontre facilmente os títulos da sua biblioteca de forma acessível e rápida.
+        </p>
+      </header>
 
-        <div class="flex flex-col">
-          <label for="nome" class="text-[18px] text-green-900 font-[600] tracking-wide">
-            Nome:
-            <span class="text-red-500 font-bold">*</span>
-          </label>
-          <input type="text" id="nome" name="nome" placeholder="Ex: Código Limpo" class="mt-1 p-2 border border-green-600 rounded-lg mb-4 text-gray-900/90 focus:ring-green-600/20 focus:ring-3 focus:outline-none">
-          
-          <label for="autor" class="text-[18px] text-green-900 font-[600] tracking-wide">
-            Autor:
-            <span class="text-red-500 font-bold">*</span>
-          </label>
-          <input type="text" id="autor" name="autor" placeholder="Ex: Robert C. Martin" class="mt-1 p-2 border border-green-600 rounded-lg mb-4 text-gray-900/90 focus:ring-green-600/20 focus:ring-3 focus:outline-none">
-
-          <label for="ano" class="text-[18px] text-green-900 font-[600] tracking-wide">
-            Ano de publicação:
-            <span class="text-red-500 font-bold">*</span>
-          </label>
-          <input type="text" id="ano" name="ano" placeholder="Ex: 2011" class="mt-1 p-2 border border-green-600 rounded-lg mb-4 text-gray-900/90 focus:ring-green-600/20 focus:ring-3 focus:outline-none">
+      <main class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         
-          <label for="categoria" class="text-[18px] text-green-900 font-[600] tracking-wide">
-            Categoria:
-            <span class="text-red-500 font-bold">*</span>
-          </label>
-          <select name="categoria" id="categoria" class="mt-1 p-2 border border-green-600 rounded-lg mb-4 text-gray-900/90 focus:ring-green-600/20 focus:ring-3 focus:outline-none">
-            <option value="" disabled selected hidden>Selecione...</option>
-            <option value="Tecnologia">Tecnologia</option>
-            <option value="Finanças">Finanças</option>
-            <option value="Literatura">Literatura</option>
-            <option value="Outros">Outros</option>
-          </select>
+        <!-- Formulário de Cadastro / Edição -->
+        <section class="lg:col-span-4 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100" aria-labelledby="form-heading">
+          <h2 id="form-heading" class="text-2xl font-bold text-gray-900 mb-6 pb-2 border-b border-gray-100">Cadastrar Livro</h2>
           
-          <label for="editora" class="text-[18px] text-green-900 font-[600] tracking-wide">
-            Editora:
-          </label>
-          <input type="text" id="editora" name="editora" placeholder="Ex: Alta Books" class="mt-1 p-2 border border-green-600 rounded-lg mb-6 text-gray-900/90 focus:ring-green-600/20 focus:ring-3 focus:outline-none">
+          <form id="form-livro" class="flex flex-col gap-5" novalidate>
+            <!-- Título -->
+            <div>
+              <label for="nome" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                Título do Livro <span class="text-red-600" aria-hidden="true">*</span>
+                <span class="sr-only">(Obrigatório)</span>
+              </label>
+              <input type="text" id="nome" name="nome" placeholder="Ex: O Senhor dos Anéis" required
+                class="w-full bg-gray-50 border border-gray-300 text-gray-900 px-4 py-3 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/30 transition-all aria-[invalid=true]:border-red-600 aria-[invalid=true]:ring-red-600/30">
+            </div>
             
-          <button id="btn-cadastro" class="text-[18px] text-stone-100 font-bold border border-green-600 bg-green-600 mt-1 p-2 rounded-lg cursor-pointer hover:text-green-600 hover:bg-stone-100 hover:-translate-y-[2px] transition-all duration-300">
-            Cadastrar Livro
-          </button>
-        </div>
-      </section>
+            <!-- Autor -->
+            <div>
+              <label for="autor" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                Autor <span class="text-red-600" aria-hidden="true">*</span>
+                <span class="sr-only">(Obrigatório)</span>
+              </label>
+              <input type="text" id="autor" name="autor" placeholder="Ex: J.R.R. Tolkien" required
+                class="w-full bg-gray-50 border border-gray-300 text-gray-900 px-4 py-3 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/30 transition-all aria-[invalid=true]:border-red-600 aria-[invalid=true]:ring-red-600/30">
+            </div>
 
-      <!-- Listagem -->
-      <section class="min-w-[300px]">
-        <h2 class="text-[24px] text-green-700 font-bold tracking-wider pb-4">Livros Cadastrados</h2>
-        <div id="list-cont" class="grid grid-cols-1 gap-4">
-          <p class="text-[18px] font-bold">Nenhum livro cadastrado até o momento!</p>
-        </div>
-      </section>
-    </main>
+            <!-- Ano & Categoria -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="ano" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                  Ano de Publicação <span class="text-red-600" aria-hidden="true">*</span>
+                  <span class="sr-only">(Obrigatório)</span>
+                </label>
+                <input type="text" id="ano" name="ano" placeholder="Ex: 1954" required pattern="\d+"
+                  class="w-full bg-gray-50 border border-gray-300 text-gray-900 px-4 py-3 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/30 transition-all aria-[invalid=true]:border-red-600 aria-[invalid=true]:ring-red-600/30">
+              </div>
+              
+              <div>
+                <label for="categoria" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                  Categoria <span class="text-red-600" aria-hidden="true">*</span>
+                  <span class="sr-only">(Obrigatório)</span>
+                </label>
+                <select name="categoria" id="categoria" required
+                  class="w-full bg-gray-50 border border-gray-300 text-gray-900 px-4 py-3 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/30 transition-all cursor-pointer aria-[invalid=true]:border-red-600 aria-[invalid=true]:ring-red-600/30">
+                  <option value="" disabled selected hidden>Selecione</option>
+                  <option value="Tecnologia">Tecnologia</option>
+                  <option value="Finanças">Finanças</option>
+                  <option value="Literatura">Literatura</option>
+                  <option value="Outros">Outros</option>
+                </select>
+              </div>
+            </div>
+            
+            <!-- Editora -->
+            <div>
+              <label for="editora" class="block text-sm font-semibold text-gray-700 mb-1.5">
+                Editora <span class="text-gray-500 font-normal text-xs ml-1">(Opcional)</span>
+              </label>
+              <input type="text" id="editora" name="editora" placeholder="Ex: HarperCollins" 
+                class="w-full bg-gray-50 border border-gray-300 text-gray-900 px-4 py-3 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/30 transition-all">
+            </div>
+              
+            <!-- Ações do Formulário -->
+            <div class="mt-4 flex flex-col sm:flex-row gap-3">
+              <button type="submit" id="btn-submit" 
+                class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold text-base px-6 py-3.5 rounded-lg shadow-sm focus:ring-4 focus:ring-blue-600/50 outline-none transition-colors duration-200">
+                Cadastrar Livro
+              </button>
+              <button type="button" id="btn-limpar" 
+                class="bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold text-base px-6 py-3.5 rounded-lg border border-gray-300 focus:ring-4 focus:ring-gray-400/50 outline-none transition-colors duration-200">
+                Limpar
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Área de Pesquisa, Filtros e Listagem -->
+        <section class="lg:col-span-8 flex flex-col gap-6" aria-labelledby="list-heading">
+          
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+            <h2 id="list-heading" class="sr-only">Listagem e Busca de Livros</h2>
+            
+            <!-- Barra de Busca e Filtros -->
+            <div class="flex flex-col md:flex-row gap-4 items-center">
+              <div class="w-full relative flex-1">
+                <label for="busca" class="sr-only">Pesquisar por Título ou Autor</label>
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <input type="text" id="busca" placeholder="Buscar por título ou autor..." 
+                  class="w-full bg-gray-50 border border-gray-300 text-gray-900 pl-10 pr-4 py-3 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/30 transition-all">
+              </div>
+
+              <div class="w-full md:w-auto flex gap-3">
+                <div class="flex-1 md:flex-none">
+                  <label for="filtro-categoria" class="sr-only">Filtrar por Categoria</label>
+                  <select id="filtro-categoria" class="w-full md:w-[160px] bg-gray-50 border border-gray-300 text-gray-900 px-4 py-3 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/30 transition-all cursor-pointer">
+                    <option value="Todas">Todas Categorias</option>
+                    <option value="Tecnologia">Tecnologia</option>
+                    <option value="Finanças">Finanças</option>
+                    <option value="Literatura">Literatura</option>
+                    <option value="Outros">Outros</option>
+                  </select>
+                </div>
+                <div class="flex-1 md:flex-none">
+                  <label for="ordenacao" class="sr-only">Ordenar por</label>
+                  <select id="ordenacao" class="w-full md:w-[150px] bg-gray-50 border border-gray-300 text-gray-900 px-4 py-3 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/30 transition-all cursor-pointer">
+                    <option value="id">Ordem de Cadastro</option>
+                    <option value="titulo">Ordenar por Título</option>
+                    <option value="ano">Ordenar por Ano</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Container da Lista de Livros -->
+          <div id="list-cont" class="flex flex-col gap-4" aria-live="polite">
+            <!-- Os cartões de livros serão inseridos aqui dinamicamente -->
+          </div>
+        </section>
+
+      </main>
+
+      <footer class="text-center text-gray-500 text-sm mt-8 border-t border-gray-200 pt-6">
+        <p>&copy; 2026 Sistema de Gerenciamento de Livros. Todos os direitos reservados.</p>
+      </footer>
+    </div>
     
     <script type="module" src="./dist/main.js"></script>
   </body>
