@@ -6,7 +6,7 @@ import { createRoot } from "react-dom/client"
 // Registra o Service Worker
 if("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/service-worker.js")
+    navigator.serviceWorker.register(`${import.meta.env.BASE_URL}service-worker.js`,)
       .then( (registration) => {
         console.log("Service Worker registrado: ", registration.scope);
       })
