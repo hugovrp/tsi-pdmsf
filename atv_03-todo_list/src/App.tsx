@@ -9,9 +9,33 @@ export function App() {
     return savedTasks ? JSON.parse(savedTasks) : [];
   });
 
+  const [isOnline, setIsOnline] = useState<boolean>(() => {
+    return typeof navigator !== "undefined" && typeof navigator.onLine === "boolean"
+      ? navigator.onLine
+      : true;
+  });
+
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
+
+  useEffect(() => {
+    function handleOnline() {
+      setIsOnline(true);
+    }
+
+    function handleOffline() {
+      setIsOnline(false);
+    }
+
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
 
   const [filter, setFilter] = useState<Filter>("all");
 
@@ -79,14 +103,33 @@ export function App() {
       <main className="max-w-xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 pb-36">
         {/* Header / Brand */}
         <header className="mb-7">
-          <div className="flex items-center justify-between gap-3 mb-2">
+          <div className="flex items-center justify-between gap-3 mb-2 flex-wrap">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold tracking-wide text-indigo-700 bg-indigo-500/10 neu-pill-inset">
               <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
               Organizador Pessoal
             </span>
-            <span className="text-xs font-medium text-slate-500">
-              {capitalizedDate}
-            </span>
+
+            <div className="flex items-center gap-2.5">
+              {/* Indicador de Status Online / Offline */}
+              <div
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold neu-pill-inset"
+                role="status"
+                aria-live="polite"
+              >
+                <span
+                  className={`w-2 h-2 rounded-full transition-colors duration-200 ${
+                    isOnline ? "bg-emerald-500" : "bg-rose-500"
+                  }`}
+                />
+                <span className={isOnline ? "text-slate-600" : "text-rose-600 font-bold"}>
+                  {isOnline ? "Online" : "Offline"}
+                </span>
+              </div>
+
+              <span className="text-xs font-medium text-slate-500">
+                {capitalizedDate}
+              </span>
+            </div>
           </div>
 
           <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-800 tracking-tight">
