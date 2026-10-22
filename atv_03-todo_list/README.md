@@ -1,6 +1,8 @@
 # ✅ To-Do List
 
-Atividade avaliativa individual: web app responsivo mobile first para gerenciamento de tarefas (to-do list), desenvolvido em React. A aplicação permite cadastrar tarefas, marcar ou desmarcar tarefas como concluídas, filtrar a listagem e persistir os dados localmente no navegador.
+Atividade avaliativa individual: web app responsivo mobile first para gerenciamento de tarefas (to-do list), desenvolvido em React e configurado como Progressive Web App (PWA). A aplicação permite cadastrar tarefas, marcar ou desmarcar tarefas como concluídas, filtrar a listagem, persistir os dados localmente no navegador e ser instalada no dispositivo com o auxílio de Service Worker e Web App Manifest.
+
+> 🚀 **Deploy (GitHub Pages):** [https://hugovrp.github.io/tsi-pdmsf/atv_03-todo_list/](https://hugovrp.github.io/tsi-pdmsf/atv_03-todo_list/)
 
 ## 📋 Enunciado
 
@@ -18,6 +20,8 @@ A aplicação deve possuir:
 * Filtro de **Concluídas**, exibindo apenas as tarefas marcadas
 * Persistência dos dados utilizando **LocalStorage**
 * Interface visual seguindo a linguagem de design neumorphism (Soft UI), desenvolvida com o auxílio de um agente de codificação com IA.
+* Configuração como **PWA (Progressive Web App)** com suporte à **instalação** no dispositivo (desktop e mobile)
+* Registro e ciclo de vida de **Service Worker**
 
 ## 🛠️ Tecnologias utilizadas
 
@@ -25,6 +29,9 @@ A aplicação deve possuir:
 * TypeScript
 * Tailwind CSS
 * LocalStorage
+* PWA (Progressive Web App)
+* Service Worker
+* Web App Manifest
 
 ## ▶️ Como executar
 
@@ -47,3 +54,5 @@ Após iniciar o servidor, acesse o endereço exibido no terminal, normalmente:
 ```text
 http://localhost:5173
 ```
+
+Para testar ou instalar a aplicação como **PWA**, acesse o endereço no [GitHub Pages](https://hugovrp.github.io/tsi-pdmsf/atv_03-todo_list/) ou no ambiente local através de um navegador compatível e clique na opção de **Instalar aplicativo** na barra de endereços ou no menu do navegador (em dispositivos móveis, através da opção "Adicionar à tela de início" / "Instalar").
