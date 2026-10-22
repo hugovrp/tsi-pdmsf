@@ -4,11 +4,11 @@ Repositório com as atividades avaliativas individuais desenvolvidas ao longo da
 
 ## 📂 Atividades
 
-| # | Atividade | Descrição | Link |
-|---|---|---|---|
-| 01 | Aula Flexbox | Revisão de Flexbox, JavaScript e consumo de API (ViaCEP) | [Acessar](./atv_01-flexbox) |
-| 02 | Acervo | Cadastro de livros com TypeScript e Tailwind CSS | [Acessar](./atv_02-acervo) |
-| 03 | To-Do List | Web App para gerenciamento de tarefas usando React | [Acessar](./atv_03-todo_list) |
+| #   | Atividade    | Descrição                                                                 | Link                          |
+| --- | ------------ | ------------------------------------------------------------------------- | ----------------------------- |
+| 01  | Aula Flexbox | Revisão de Flexbox, JavaScript e consumo de API (ViaCEP)                  | [Acessar](./atv_01-flexbox)   |
+| 02  | Acervo       | Cadastro de livros com TypeScript e Tailwind CSS                          | [Acessar](./atv_02-acervo)    |
+| 03  | To-Do List   | Web App para gerenciamento de tarefas usando React e configurado como PWA | [Acessar](./atv_03-todo_list) |
 
 Cada pasta de atividade contém seu próprio `README.md` com o enunciado completo, as tecnologias utilizadas e as instruções de execução.
 
@@ -20,6 +20,9 @@ Cada pasta de atividade contém seu próprio `README.md` com o enunciado complet
 - Tailwind CSS
 - LocalStorage
 - Fetch API / consumo de APIs REST
+- PWA (Progressive Web App)
+- Service Worker
+- Web App Manifest
 
 ## ▶️ Como executar as atividades
 
