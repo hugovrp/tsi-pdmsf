@@ -22,7 +22,7 @@ A aplicação deve possuir:
 * Interface visual seguindo a linguagem de design neumorphism (Soft UI), desenvolvida com o auxílio de um agente de codificação com IA.
 * Configuração como **PWA (Progressive Web App)** com suporte à **instalação** no dispositivo (desktop e mobile)
 * Registro e ciclo de vida de **Service Worker**
-* Integração da **Vibration API** para acionar uma vibração curta de 100ms no momento em que uma tarefa é alterada para concluída
+* Integração da **Vibration API** para acionar uma vibração curta de 300ms no momento em que uma tarefa é alterada para concluída
 * Integração da **SpeechRecognition API (Web Speech API)** com botão de microfone ao lado do input para captura e conversão de voz em tempo real (em português - pt-BR), com controle de estado visual e tratamento de erro caso a permissão seja negada
 * Integração da **Notifications API** com registro de sincronização periódica diária (**Periodic Background Sync**) via Service Worker e trava de segurança baseada em data (via Cache API) para no máximo uma notificação por dia
 
