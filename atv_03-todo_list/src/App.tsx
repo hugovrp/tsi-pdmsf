@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Task, TaskProps } from "./components/Task";
 import { useVibration } from "./hooks/useVibration";
 import { useSpeechRecognition } from "./hooks/useSpeechRecognition";
@@ -23,6 +23,10 @@ export function App() {
   // 1. Hook para Vibration API
   const { vibrate } = useVibration();
 
+  const handleTranscript = useCallback((text: string) => {
+    setTaskInput(text);
+  }, []);
+
   // 2. Hook para Web Speech API (Reconhecimento de Voz em pt-BR)
   const {
     isListening,
@@ -31,9 +35,7 @@ export function App() {
     toggleListening,
     clearError: clearSpeechError,
   } = useSpeechRecognition({
-    onTranscriptChange: (text) => {
-      setTaskInput(text);
-    },
+    onTranscriptChange: handleTranscript,
   });
 
   // 3. Hook para Notifications API + Periodic Background Sync
@@ -81,15 +83,16 @@ export function App() {
 
   // 1. Vibration API acionada exatamente ao marcar tarefa como "concluída"
   function handleCheck(id: number) {
+    const targetTask = tasks.find((t) => t.id === id);
+    if (targetTask && !targetTask.checked) {
+      // Dispara vibração curta e sutil de 100ms sincronizada com o clique
+      vibrate(100);
+    }
+
     setTasks((prevTasks) =>
       prevTasks.map((task) => {
         if (task.id === id) {
-          const willBeCompleted = !task.checked;
-          if (willBeCompleted) {
-            // Vibração curta e sutil de 100ms
-            vibrate(100);
-          }
-          return { ...task, checked: willBeCompleted };
+          return { ...task, checked: !task.checked };
         }
         return task;
       })
@@ -338,7 +341,6 @@ export function App() {
                     : "text-slate-500 hover:text-indigo-600 active:scale-95 neu-button"
                 } ${!isSpeechSupported ? "opacity-40 cursor-not-allowed" : ""}`}
               >
-                {/* Ícone de microfone */}
                 <svg
                   className="w-5 h-5 transition-colors"
                   fill="none"
