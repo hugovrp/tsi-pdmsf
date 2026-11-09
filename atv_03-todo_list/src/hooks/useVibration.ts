@@ -1,5 +1,5 @@
 export function useVibration() {
-  const vibrate = (pattern: number | number[] = 100): boolean => {
+  const vibrate = (pattern: number | number[] = 300): boolean => {
     if (typeof window !== "undefined" && "vibrate" in navigator) {
       try {
         const result = navigator.vibrate(pattern);
